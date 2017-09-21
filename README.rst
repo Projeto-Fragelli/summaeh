@@ -17,12 +17,14 @@ Somas com chapéu
 
 :License: GPLv3
 
-Instalação
-----------
+Installation
+------------
 
-pip install -r requirements/base.txt
+sudo apt-get install python3-pip
 
-pip install -r requirements/local.txt
+pip3 install -r requirements/base.txt --user
+
+pip3 install -r requirements/local.txt --user
 
 python3 manage.py makemigrations
 
