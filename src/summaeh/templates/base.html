@@ -2,26 +2,24 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
   <title>Summaê - Somas com Chapéu</title>
 
   <!-- CSS  -->
   <!-- <link href="/static/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/> -->
   {% include 'material/includes/material_css.html' %}
-    <script src="{% static 'material/js/jquery.js' %}"></script>
-  {% include 'material/includes/material_js.html' %}
-  <link href="/static/css/project.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <script src="{% static 'material/js/jquery.js' %}"></script> {% include 'material/includes/material_js.html' %}
+  <link href="/static/css/project.css" type="text/css" rel="stylesheet" media="screen,projection" />
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="/static/images/favicon.ico" type="image/x-icon" rel="shortcut icon"/>
+  <link href="/static/images/favicon.ico" type="image/x-icon" rel="shortcut icon" />
   <script type="javascript" src="/static/js/materialize.js"></script>
-  <script type="javascript" src="/static/js/project.js"></script>
-    {% include 'material/includes/material_css.html' %}
-    <script src="{% static 'material/js/jquery.js' %}"></script>
-    {% include 'material/includes/material_js.html' %}
+  <script type="javascript" src="/static/js/project.js"></script> {% include 'material/includes/material_css.html' %}
+  <script src="{% static 'material/js/jquery.js' %}"></script> {% include 'material/includes/material_js.html' %}
   <!--script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" integrity="sha384-3ceskX3iaEnIogmQchP8opvBy3Mi7Ce34nWjpBIwVTHfGYWQS9jwHDVRnpKKHJg7" crossorigin="anonymous"></script-->
-<script src="{% static 'js/project.js' %}"></script>
+  <script src="{% static 'js/project.js' %}"></script>
 
 
 </head>
@@ -38,92 +36,146 @@
   }
 </style>
 
-  <body>
-    <nav class="blue accent-2" role="navigation">
-      <div class="nav-wrapper container"><a id="logo-container" href="{% url 'home' %}" class="brand-logo">Summaê</a>
-        {% if request.user.is_authenticated %}
-          <ul class="right hide-on-med-and-down">
-              <li><a href="{% url 'users:detail' request.user.username  %}">Meu Perfil</a></li>
-          </ul>
-          <ul class="right hide-on-med-and-down">
-              <li><a href="{% url 'account_logout' %}">Log out</a></li>
-          </ul>
-          <ul class="right hide-on-med-and-down">
-          <li><a href="/events/">Eventos</a></li>
-        </ul>
-        {% else %}
-          <ul class="right hide-on-med-and-down">
-              <li><a href="{% url 'account_signup' %}">Faça seu cadastro</a></li>
-          </ul>
-          <ul class="right hide-on-med-and-down">
-              <li><a href="{% url 'account_login' %}">Login</a></li>
-          </ul>
-        {% endif %}
-          <ul class="right hide-on-med-and-down">
-            <li><a href="/videos/">Todos os vídeos</a></li>
-          </ul>
-        <ul class="right hide-on-med-and-down">
-          <li><a href="{% url 'about' %}">Sobre</a></li>
-        </ul>
-        <ul class="right hide-on-med-and-down">
-          <li><a href="{% url 'home' %}">Home</a></li>
-        </ul>
+<body>
 
-        <ul id="nav-mobile" class="side-nav">
-          <li><a href="#">Navbar Link</a></li>
-        </ul>
-        <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+  <div id="fb-root"></div>
+  <script>(function (d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = 'https://connect.facebook.net/pt_BR/sdk.js#xfbml=1&version=v2.10&appId=1996280777284545';
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+
+  <script>
+    window.fbAsyncInit = function () {
+      FB.init({
+        appId: '1996280777284545',
+        cookie: true,
+        xfbml: true,
+        version: 'v2.10'
+      });
+
+      FB.AppEvents.logPageView();
+
+    };
+/*
+    (function (d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) { return; }
+      js = d.createElement(s); js.id = id;
+      js.src = "https://connect.facebook.net/en_US/sdk.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk')); */
+  </script>
+
+  <nav class="blue accent-2" role="navigation">
+    <div class="nav-wrapper container">
+      <a id="logo-container" href="{% url 'home' %}" class="brand-logo">Summaê</a>
+      {% if request.user.is_authenticated %}
+      <ul class="right hide-on-med-and-down">
+        <li>
+          <a href="{% url 'users:detail' request.user.username  %}">Meu Perfil</a>
+        </li>
+      </ul>
+      <ul class="right hide-on-med-and-down">
+        <li>
+          <a href="{% url 'account_logout' %}">Log out</a>
+        </li>
+      </ul>
+      <ul class="right hide-on-med-and-down">
+        <li>
+          <a href="/events/">Eventos</a>
+        </li>
+      </ul>
+      <div class="fb-login-button" data-max-rows="1" data-size="medium" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="false"
+        data-use-continue-as="true"></div>
+      {% else %}
+      <ul class="right hide-on-med-and-down">
+        <li>
+          <a href="{% url 'account_signup' %}">Faça seu cadastro</a>
+        </li>
+      </ul>
+      <ul class="right hide-on-med-and-down">
+        <li>
+          <a href="{% url 'account_login' %}">Login</a>
+        </li>
+      </ul>
+      {% endif %}
+      <ul class="right hide-on-med-and-down">
+        <li>
+          <a href="/videos/">Todos os vídeos</a>
+        </li>
+      </ul>
+      <ul class="right hide-on-med-and-down">
+        <li>
+          <a href="{% url 'about' %}">Sobre</a>
+        </li>
+      </ul>
+      <ul class="right hide-on-med-and-down">
+        <li>
+          <a href="{% url 'home' %}">Home</a>
+        </li>
+      </ul>
+
+      <ul id="nav-mobile" class="side-nav">
+        <li>
+          <a href="#">Navbar Link</a>
+        </li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse">
+        <i class="material-icons">menu</i>
+      </a>
+    </div>
+  </nav>
+  {% block content %} {% endblock %} {% block javascript %}
+  <!-- Required by Bootstrap v4 Alpha 4 -->
+
+  <script type="text/javascript">
+    $("#like").click(function () {
+      var button = $(this)
+      $.ajax({
+        type: "POST",
+        url: "{% url 'videos:like' %}",
+        data: { 'video_id': $(this).attr('name'), 'csrfmiddlewaretoken': '{{ csrf_token }}' },
+        dataType: "json",
+        success: function (response) {
+          { #                       alert('Video likes count is now ' + response.likes_count); # }
+          if (response.like) {
+            button.val(response.likes_count + " Unlike")
+          } else {
+            button.val(response.likes_count + " Like")
+          }
+        }, error: function (rs, e) {
+          alert(rs.responseText);
+        }
+      });
+    })
+  </script> {% endblock %}
+
+
+  <footer class="page-footer">
+    <center>
+      <div class="container">
+        <div class="row">
+          <img src="{% static "images/summaeh.jpg" %}" alt="My image" style="width: 400px; border-radius: 15%" />
+        </div>
       </div>
-    </nav>
-    {% block content %}
-    {% endblock %}
+    </center>
+    <center>
+      <div class="footer-copyright">
+        <div class="container">
+          Summaê
+          <br> "Um método diferente para estudar e compartilhar conhecimento"
+          <br> Contato: Prof. Ricardo Fragelli - fragelli@unb.br
+          <br> © 2014 Copyright Text
+          <br>
+          <br>
+        </div>
+      </div>
+    </center>
+  </footer>
 
-    {% block javascript %}
-      <!-- Required by Bootstrap v4 Alpha 4 -->
+</body>
 
-      <script type="text/javascript">
-        $("#like").click(function(){
-            var button = $(this)
-              $.ajax({
-                   type: "POST",
-                   url: "{% url 'videos:like' %}",
-                   data: {'video_id': $(this).attr('name'), 'csrfmiddlewaretoken': '{{ csrf_token }}'},
-                   dataType: "json",
-                   success: function(response) {
-{#                       alert('Video likes count is now ' + response.likes_count);#}
-                       if(response.like){
-                           button.val(response.likes_count+" Unlike")
-                       }else{
-                           button.val(response.likes_count+" Like")
-                       }
-                    }, error: function(rs, e) {
-                       alert(rs.responseText);
-                   }
-              });
-        })
-      </script>
-
-
-    {% endblock %}
-
-
-    <footer class="page-footer">
-          <center><div class="container">
-            <div class="row">
-              <img src="{% static "images/summaeh.jpg" %}" alt="My image" style="width: 400px; border-radius: 15%"/>
-            </div>
-          </div></center>
-          <center><div class="footer-copyright">
-            <div class="container">
-            Summaê <br>
-        "Um método diferente para estudar e compartilhar conhecimento" <br>
-        Contato: Prof. Ricardo Fragelli - fragelli@unb.br <br>
-            © 2014 Copyright Text
-                        <br>            <br>
-            </div>
-          </div></center>
-        </footer>
-
-  </body>
 </html>
-
