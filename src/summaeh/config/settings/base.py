@@ -61,6 +61,7 @@ THIRD_PARTY_APPS = [
     'allauth',  # registration
     'allauth.account',  # registration
     'allauth.socialaccount',  # registration
+    'social_django', # Login Social
 
 ]
 
@@ -78,6 +79,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
 # MIGRATIONS CONFIGURATION
@@ -180,6 +182,9 @@ TEMPLATES = [
                 'django.template.context_processors.tz',
                 'django.contrib.messages.context_processors.messages',
                 # Your stuff: custom template context processors go here
+
+                'social_django.context_processors.backends', # Login Social
+                'social_django.context_processors.login_redirect', # Login Social
             ],
         },
     },
@@ -264,6 +269,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # AUTHENTICATION CONFIGURATION
 # ------------------------------------------------------------------------------
 AUTHENTICATION_BACKENDS = [
+    'social_core.backends.facebook.FacebookOAuth2',
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
@@ -285,6 +291,10 @@ LOGIN_URL = 'account_login'
 
 # SLUGLIFIER
 AUTOSLUG_SLUGIFY_FUNCTION = 'slugify.slugify'
+
+# Social Login - Facebook
+SOCIAL_AUTH_FACEBOOK_KEY = '1996280777284545'
+SOCIAL_AUTH_FACEBOOK_SECRET = '6190c1d8dbff527582734424c5335fa7' 
 
 
 # Location of root django.contrib.admin URL, use {% url 'admin:index' %}
