@@ -14,6 +14,7 @@
   {% include 'material/includes/material_js.html' %}
   <link href="/static/css/project.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Asul:400,700" rel="stylesheet"> 
   <link href="/static/images/favicon.ico" type="image/x-icon" rel="shortcut icon"/>
   <script type="javascript" src="/static/js/materialize.js"></script>
   <script type="javascript" src="/static/js/project.js"></script>
@@ -23,6 +24,9 @@
   <!--script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" integrity="sha384-3ceskX3iaEnIogmQchP8opvBy3Mi7Ce34nWjpBIwVTHfGYWQS9jwHDVRnpKKHJg7" crossorigin="anonymous"></script-->
 <script src="{% static 'js/project.js' %}"></script>
 
+<style>
+  @import url('https://fonts.googleapis.com/css?family=Asul');
+</style>
 
 </head>
 
@@ -39,42 +43,73 @@
 </style>
 
   <body>
-    <nav class="blue accent-2" role="navigation">
-      <div class="nav-wrapper container"><a id="logo-container" href="{% url 'home' %}" class="brand-logo">Summaê</a>
-        {% if request.user.is_authenticated %}
-          <ul class="right hide-on-med-and-down">
-              <li><a href="{% url 'users:detail' request.user.username  %}">Meu Perfil</a></li>
-          </ul>
-          <ul class="right hide-on-med-and-down">
-              <li><a href="{% url 'account_logout' %}">Log out</a></li>
-          </ul>
-          <ul class="right hide-on-med-and-down">
-          <li><a href="/events/">Eventos</a></li>
-        </ul>
-        {% else %}
-          <ul class="right hide-on-med-and-down">
-              <li><a href="{% url 'account_signup' %}">Faça seu cadastro</a></li>
-          </ul>
-          <ul class="right hide-on-med-and-down">
-              <li><a href="{% url 'account_login' %}">Login</a></li>
-          </ul>
-        {% endif %}
-          <ul class="right hide-on-med-and-down">
-            <li><a href="/videos/">Todos os vídeos</a></li>
-          </ul>
-        <ul class="right hide-on-med-and-down">
-          <li><a href="{% url 'about' %}">Sobre</a></li>
-        </ul>
-        <ul class="right hide-on-med-and-down">
-          <li><a href="{% url 'home' %}">Home</a></li>
-        </ul>
+    <div>
+      <nav class="blue accent-2" role="navigation">
+        <div class="nav-wrapper container">
+          <a id="logo-container" href="{% url 'home' %}" class="brand-logo">Summaê</a>
+          <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
 
-        <ul id="nav-mobile" class="side-nav">
-          <li><a href="#">Navbar Link</a></li>
-        </ul>
-        <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
-      </div>
-    </nav>
+          {% if request.user.is_authenticated %}
+            <ul class="right hide-on-med-and-down">
+              <li><a href="/events/">Eventos</a></li>
+
+              <li><a href="{% url 'users:detail' request.user.username  %}">Meu Perfil</a></li>
+
+              <li><a href="{% url 'account_logout' %}">Sair</a></li>
+            </ul>
+
+            <ul class="side-nav" id="mobile-demo">
+              <li><a href="/events/">Eventos</a></li>
+  
+              <li><a href="{% url 'users:detail' request.user.username  %}">Meu Perfil</a></li>
+  
+              <li><a href="{% url 'account_logout' %}">Sair</a></li>
+            </ul>
+
+          {% else %}
+            <ul class="right hide-on-med-and-down">
+              <li><a href="{% url 'account_login' %}">Login</a></li>
+
+              <li><a href="{% url 'account_signup' %}">Cadastre-se</a></li>
+            </ul>
+
+            <ul class="side-nav" id="mobile-demo">
+              <li><a href="{% url 'account_login' %}">Login</a></li>
+  
+              <li><a href="{% url 'account_signup' %}">Cadastre-se</a></li>
+            </ul>
+
+          {% endif %}
+            <ul class="right hide-on-med-and-down">
+              <li><a href="{% url 'home' %}">Home</a></li>
+
+              <li><a href="{% url 'about' %}">Sobre</a></li>
+
+              <li><a href="/videos/">Todos os vídeos</a></li>
+            </ul>   
+
+            <ul class="side-nav" id="mobile-demo">
+              <li><a href="{% url 'home' %}">Home</a></li>
+  
+              <li><a href="{% url 'about' %}">Sobre</a></li>
+  
+              <li><a href="/videos/">Todos os vídeos</a></li>
+            </ul>
+        <!--
+          <ul id="nav-mobile" class="side-nav">
+            <li><a href="#">Navbar Link</a></li>
+          </ul>
+          <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+        -->
+        </div>
+      </nav>
+      <script type="text/javascript">
+        $( document ).ready(function(){
+          $(".button-collapse").sideNav();
+        })
+      </script>
+    </div>
+    
     {% block content %}
     {% endblock %}
 
