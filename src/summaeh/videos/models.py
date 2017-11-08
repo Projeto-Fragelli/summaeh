@@ -33,6 +33,10 @@ class Video(TimeStampedModel):
         on_delete=models.PROTECT,
         help_text='Usuário responsável pelo vídeo.',
     )
+    description = models.TextField(
+        'Descrição',
+        max_length=500,
+    )
 
     def __str__(self):
         return self.name
@@ -48,8 +52,6 @@ class Video(TimeStampedModel):
         Retorna a quantidade de vídeos um evento possui.
         """
         return self.votes.filter(event=event).count()
-
-
 
 class Comment(TimeStampedModel):
     """
