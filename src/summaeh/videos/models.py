@@ -36,6 +36,7 @@ class Video(TimeStampedModel):
     description = models.TextField(
         'Descrição',
         max_length=500,
+        default='',
     )
 
     def __str__(self):
