@@ -3230,7 +3230,7 @@ nav {
 
   .navbar-fixed {
     height: 64px; } }
-@font-face {
+/* @font-face {
   font-family: "Roboto";
   src: local(Roboto Thin), url("../fonts/roboto/Roboto-Thin.woff2") format("woff2"), url("../fonts/roboto/Roboto-Thin.woff") format("woff");
   font-weight: 100; }
@@ -3249,13 +3249,34 @@ nav {
 @font-face {
   font-family: "Roboto";
   src: local(Roboto Bold), url("../fonts/roboto/Roboto-Bold.woff2") format("woff2"), url("../fonts/roboto/Roboto-Bold.woff") format("woff");
-  font-weight: 700; }
+  font-weight: 700; } */
+
+  @font-face {
+    font-family: 'Asul';
+    src: url('Asul-Regular.eot');
+    src: url('Asul-Regular.eot?#iefix') format('embedded-opentype'),
+        url('Asul-Regular.woff') format('woff'),
+        url('Asul-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'Asul';
+    src: url('Asul-Bold.eot');
+    src: url('Asul-Bold.eot?#iefix') format('embedded-opentype'),
+        url('Asul-Bold.woff') format('woff'),
+        url('Asul-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+  }
+
 a {
   text-decoration: none; }
 
 html {
   line-height: 1.5;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Asul';
   font-weight: normal;
   color: rgba(0, 0, 0, 0.87); }
   @media only screen and (min-width: 0) {
