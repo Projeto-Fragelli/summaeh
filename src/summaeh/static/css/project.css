@@ -3275,6 +3275,7 @@ a {
   text-decoration: none; }
 
 html {
+  background: white;
   line-height: 1.5;
   font-family: 'Asul';
   font-weight: normal;
