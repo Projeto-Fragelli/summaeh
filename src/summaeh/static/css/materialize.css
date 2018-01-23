@@ -3083,7 +3083,7 @@ td, th {
 .collection a.collection-item {
   display: block;
   transition: .25s;
-  color: #26a69a;
+  color: #55df3a;
 }
 
 .collection a.collection-item:not(.active):hover {
