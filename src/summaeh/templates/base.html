@@ -33,94 +33,48 @@
     <nav class="new-green accent-2" role="navigation">
       <div class="nav-wrapper container">
         <a id="logo-container" href="{% url 'home' %}" class="brand-logo">Summaê</a>
-        <a href="#" data-activates="mobile-demo" class="button-collapse">
-          <i class="material-icons">menu</i>
-        </a>
+        <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
 
         {% if request.user.is_authenticated %}
         <ul class="right hide-on-med-and-down">
-          <li>
-            <a href="/events/">Eventos</a>
-          </li>
-
-          <li>
-            <a href="{% url 'users:detail' request.user.username  %}">Meu Perfil</a>
-          </li>
-
-          <li>
-            <a href="{% url 'account_logout' %}">Sair</a>
-          </li>
+          <li><a href="{% url 'home' %}">Home</a></li>
+          <li><a href="{% url 'about' %}">Sobre</a></li>
+          <li><a href="/videos/">Todos os vídeos</a></li>
+          <li><a href="/events/">Eventos</a></li>
+          <li><a href="{% url 'users:detail' request.user.username  %}">Meu Perfil</a></li>
+          <li><a href="{% url 'account_logout' %}">Sair</a></li>
         </ul>
 
         <ul class="side-nav" id="mobile-demo">
-          <li>
-            <a href="/events/">Eventos</a>
-          </li>
-
-          <li>
-            <a href="{% url 'users:detail' request.user.username  %}">Meu Perfil</a>
-          </li>
-
-          <li>
-            <a href="{% url 'account_logout' %}">Sair</a>
-          </li>
+          <li><a href="{% url 'home' %}">Home</a></li>
+          <li><a href="{% url 'about' %}">Sobre</a></li>
+          <li><a href="/videos/">Todos os vídeos</a></li>
+          <li><a href="/events/">Eventos</a></li>
+          <li><a href="{% url 'users:detail' request.user.username  %}">Meu Perfil</a></li>
+          <li><a href="{% url 'account_logout' %}">Sair</a></li>
         </ul>
 
         {% else %}
         <ul class="right hide-on-med-and-down">
-          <li>
-            <a href="{% url 'account_login' %}">Login</a>
-          </li>
-
-          <li>
-            <a href="{% url 'account_signup' %}">Cadastre-se</a>
-          </li>
+          <li><a href="{% url 'home' %}">Home</a></li>
+          <li><a href="{% url 'about' %}">Sobre</a></li>
+          <li><a href="/videos/">Todos os vídeos</a></li>
+          <li><a href="/events/">Eventos</a></li>
+          <li><a href="{% url 'account_login' %}">Login</a></li>
+          <li><a href="{% url 'account_signup' %}">Cadastre-se</a></li>
         </ul>
 
         <ul class="side-nav" id="mobile-demo">
-          <li>
-            <a href="{% url 'account_login' %}">Login</a>
-          </li>
-
-          <li>
-            <a href="{% url 'account_signup' %}">Cadastre-se</a>
-          </li>
+          <li><a href="{% url 'home' %}">Home</a></li>
+          <li><a href="{% url 'about' %}">Sobre</a></li>
+          <li><a href="/videos/">Todos os vídeos</a></li>
+          <li><a href="/events/">Eventos</a></li>
+          <li><a href="{% url 'account_login' %}">Login</a></li>
+          <li><a href="{% url 'account_signup' %}">Cadastre-se</a></li>
         </ul>
 
         {% endif %}
-        <ul class="right hide-on-med-and-down">
-          <li>
-            <a href="{% url 'home' %}">Home</a>
-          </li>
 
-          <li>
-            <a href="{% url 'about' %}">Sobre</a>
-          </li>
-
-          <li>
-            <a href="/videos/">Todos os vídeos</a>
-          </li>
-        </ul>
-
-        <ul class="side-nav" id="mobile-demo">
-          <li>
-            <a href="{% url 'home' %}">Home</a>
-          </li>
-
-          <li>
-            <a href="{% url 'about' %}">Sobre</a>
-          </li>
-
-          <li>
-            <a href="/videos/">Todos os vídeos</a>
-          </li>
-        </ul>
-        <!--
-          <ul id="nav-mobile" class="side-nav">
-            <li><a href="#">Navbar Link</a></li>
-          </ul>
-          <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
-        -->
       </div>
     </nav>
     <script type="text/javascript">
@@ -142,7 +96,7 @@
         data: { 'video_id': $(this).attr('name'), 'csrfmiddlewaretoken': '{{ csrf_token }}' },
         dataType: "json",
         success: function (response) {
-          { #                       alert('Video likes count is now ' + response.likes_count); # }
+          { alert('A quantidade de likes desse vídeo é: ' + response.likes_count); }
           if (response.like) {
             button.val(response.likes_count + " Unlike")
           } else {
