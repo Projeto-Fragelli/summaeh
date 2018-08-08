@@ -2,136 +2,138 @@
 
 <!DOCTYPE html>
 <html lang="en">
-
+    
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
-  <title>Summaê - Somas com Chapéu</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>Summaê - Soma com Chapéus</title>
 
   <!-- CSS  -->
-  <!-- <link href="/static/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/> -->
   {% include 'material/includes/material_css.html' %}
-  <script src="{% static 'material/js/jquery.js' %}"></script> {% include 'material/includes/material_js.html' %}
-  <link href="/static/css/project.css" type="text/css" rel="stylesheet" media="screen,projection" />
+  <script src="{% static 'material/js/jquery.js' %}"></script> 
+  {% include 'material/includes/material_js.html' %}
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="static/css/materialize.css" rel="stylesheet" media="screen,projection"/>
+  <link href="static/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/> 
+  <link href="/static/images/favicon.ico" type="image/x-icon" rel="shortcut icon" />  
   <link href="https://fonts.googleapis.com/css?family=Asul:400,700" rel="stylesheet">
-  <link href="/static/images/favicon.ico" type="image/x-icon" rel="shortcut icon" />
+  <link href="/static/css/project.css" type="text/css" rel="stylesheet" media="screen,projection" />
+
+  <!--  Scripts-->
+  
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script type="javascript" src="/static/js/materialize.js"></script>
-  <script type="javascript" src="/static/js/project.js"></script>
-  <!--
-    {% include 'material/includes/material_css.html' %}
-    <script src="{% static 'material/js/jquery.js' %}"></script>
-    {% include 'material/includes/material_js.html' %}
-  -->
-  <!--script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" integrity="sha384-3ceskX3iaEnIogmQchP8opvBy3Mi7Ce34nWjpBIwVTHfGYWQS9jwHDVRnpKKHJg7" crossorigin="anonymous"></script-->
-  <script src="{% static 'js/project.js' %}"></script>
+  <script type="javascript" src="/static/js/init.js"></script>
+  <script src="/static/js/project.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" integrity="sha384-3ceskX3iaEnIogmQchP8opvBy3Mi7Ce34nWjpBIwVTHfGYWQS9jwHDVRnpKKHJg7" crossorigin="anonymous"></script>
+
+  {% block javascript %}
+
+    <script>
+
+      $(document).ready(function(){
+        $('.parallax').parallax();
+      });
+
+      $(document).ready(function(){
+      $('.sidenav').sidenav();
+      });
+
+      $(document).ready(function () {
+        $(".button-collapse").sideNav();
+      })
+
+    </script>
+
+  {% endblock %}
 
 </head>
 
 <body>
-  <div>
-    <nav class="new-green accent-2" role="navigation">
+  <div class="navbar-fixed">
+    <nav class="black" role="navigation">
       <div class="nav-wrapper container">
         <a id="logo-container" href="{% url 'home' %}" class="brand-logo">Summaê</a>
-        <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-
+        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        
         {% if request.user.is_authenticated %}
-        <ul class="right hide-on-med-and-down">
-          <li><a href="{% url 'home' %}">Home</a></li>
-          <li><a href="{% url 'about' %}">Sobre</a></li>
-          <li><a href="/videos/">Todos os vídeos</a></li>
-          <li><a href="/events/">Eventos</a></li>
-          <li><a href="{% url 'users:detail' request.user.username  %}">Meu Perfil</a></li>
-          <li><a href="{% url 'account_logout' %}">Sair</a></li>
-        </ul>
+          <ul class="right hide-on-med-and-down">
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'about' %}">Sobre</a></li>
+            <li><a href="/videos/">Todos os vídeos</a></li>
+            <li><a href="/events/">Eventos</a></li>
+            <li><a href="{% url 'users:detail' request.user.username  %}">Meu Perfil</a></li>
+            <li><a href="{% url 'account_logout' %}">Sair</a></li>
+          </ul>
 
-        <ul class="side-nav" id="mobile-demo">
-          <li><a href="{% url 'home' %}">Home</a></li>
-          <li><a href="{% url 'about' %}">Sobre</a></li>
-          <li><a href="/videos/">Todos os vídeos</a></li>
-          <li><a href="/events/">Eventos</a></li>
-          <li><a href="{% url 'users:detail' request.user.username  %}">Meu Perfil</a></li>
-          <li><a href="{% url 'account_logout' %}">Sair</a></li>
-        </ul>
+          <ul class="sidenav" id="mobile-demo">
+              <li><a href="{% url 'home' %}">Home</a></li>
+              <li><a href="{% url 'about' %}">Sobre</a></li>
+              <li><a href="/videos/">Todos os vídeos</a></li>
+              <li><a href="/events/">Eventos</a></li>
+              <li><a href="{% url 'users:detail' request.user.username  %}">Meu Perfil</a></li>
+              <li><a href="{% url 'account_logout' %}">Sair</a></li>
+          </ul>
 
-        {% else %}
-        <ul class="right hide-on-med-and-down">
-          <li><a href="{% url 'home' %}">Home</a></li>
-          <li><a href="{% url 'about' %}">Sobre</a></li>
-          <li><a href="/videos/">Todos os vídeos</a></li>
-          <li><a href="/events/">Eventos</a></li>
-          <li><a href="{% url 'account_login' %}">Login</a></li>
-          <li><a href="{% url 'account_signup' %}">Cadastre-se</a></li>
-        </ul>
+          {% else %}
+          <ul class="right hide-on-med-and-down">
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'about' %}">Sobre</a></li>
+            <li><a href="/videos/">Todos os vídeos</a></li>
+            <li><a href="/events/">Eventos</a></li>
+            <li><a href="{% url 'account_login' %}">Login</a></li>
+            <li><a href="{% url 'account_signup' %}">Cadastre-se</a></li>
+          </ul>
 
-        <ul class="side-nav" id="mobile-demo">
-          <li><a href="{% url 'home' %}">Home</a></li>
-          <li><a href="{% url 'about' %}">Sobre</a></li>
-          <li><a href="/videos/">Todos os vídeos</a></li>
-          <li><a href="/events/">Eventos</a></li>
-          <li><a href="{% url 'account_login' %}">Login</a></li>
-          <li><a href="{% url 'account_signup' %}">Cadastre-se</a></li>
-        </ul>
+          <ul class="sidenav" id="mobile-demo">
+              <li><a href="{% url 'home' %}">Home</a></li>
+              <li><a href="{% url 'about' %}">Sobre</a></li>
+              <li><a href="/videos/">Todos os vídeos</a></li>
+              <li><a href="/events/">Eventos</a></li>
+              <li><a href="{% url 'account_login' %}">Login</a></li>
+              <li><a href="{% url 'account_signup' %}">Cadastre-se</a></li>
+          </ul>
 
-        {% endif %}
-
-      </div>
+          {% endif %}
+        </div>
     </nav>
-    <script type="text/javascript">
-      $(document).ready(function () {
-        $(".button-collapse").sideNav();
-      })
-    </script>
   </div>
 
-  {% block content %} {% endblock %} {% block javascript %}
-  <!-- Required by Bootstrap v4 Alpha 4 -->
-
-  <script type="text/javascript">
-    $("#like").click(function () {
-      var button = $(this)
-      $.ajax({
-        type: "POST",
-        url: "{% url 'videos:like' %}",
-        data: { 'video_id': $(this).attr('name'), 'csrfmiddlewaretoken': '{{ csrf_token }}' },
-        dataType: "json",
-        success: function (response) {
-          { alert('A quantidade de likes desse vídeo é: ' + response.likes_count); }
-          if (response.like) {
-            button.val(response.likes_count + " Unlike")
-          } else {
-            button.val(response.likes_count + " Like")
-          }
-        }, error: function (rs, e) {
-          alert(rs.responseText);
-        }
-      });
-    })
-  </script> {% endblock %}
+  {% block content %} {% endblock %}
 
 
   <footer class="page-footer">
-    <center>
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">Summaê</h5>
+          <p class="grey-text text-lighten-4">"Um método diferente para estudar e compartilhar conhecimento"</p>
+
+
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Eventos</h5>
+          <ul>
+            <li><a class="white-text" href="#!">Todos os Vídeos</a></li>
+            <li><a class="white-text" href="#!">Eventos</a></li>
+          </ul>
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Conexão</h5>
+          <ul>
+            <li><a class="white-text" href="#!">Meu Perfil</a></li>
+            <li><a class="white-text" href="#!">Sobre</a></li>
+            <li><a class="white-text" href="#!">Fale Conosco</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
       <div class="container">
-        <div class="row">
-          <img src="{% static "images/summaeh.jpg" %}" alt="My image" style="width: 400px; border-radius: 15%" />
-        </div>
+        Contato: Prof. Ricardo Fragelli - fragelli@unb.br
       </div>
-    </center>
-    <center>
-      <div class="footer-copyright">
-        <div class="container">
-          Summaê
-          <br> "Um método diferente para estudar e compartilhar conhecimento"
-          <br> Contato: Prof. Ricardo Fragelli - fragelli@unb.br
-          <br> © 2014 Copyright Text
-          <br>
-          <br>
-        </div>
-      </div>
-    </center>
+    </div>
   </footer>
-
-</body>
-
+ 
+  </body>
 </html>
