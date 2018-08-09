@@ -25,20 +25,33 @@
      -->
     <div class="container">
         <br>
-        <br>
+        <h2 class="header center">Vídeos Cadastrados</h2>
         {% for video in videos_list %}
-            <div class="row">
-                <div class="col s12 m8">
-                    <div class="card blue darken-3">
-                        <div class="card-content white-text flow-text">
-                            <a class="white-text" href={% url 'videos:detail' video.id %}>{{ video.name }}</a>
-                            <br>
-                            <iframe src="{{ video.link }}" width="560" height="315"
-                                    frameborder="0" allowfullscreen></iframe>
+        <div class="container">
+  
+                <div class="container">
+                    <div class="section">
+                      <div class="row">
+                        <div class="col s12 center">
+                          <div class="video-container">
+                              <iframe width="853" height="480" src="{{ video.link }}" frameborder="0" allowfullscreen></iframe>
+                          </div>
                         </div>
+                      </div>
+          
+                          <div class="col s12 m4 l8">
+                            <div class="card teal darken-1">
+                              <div class="card-content white-text center">
+                                <span class="card-title">{{ video.name }}</span>
+                                <p>{{ video.description }}</p>
+                              </div>
+                            </div>
+                          </div>
+            
                     </div>
-                </div>
-            </div>
+                  </div>
+                    <hr>
+              </div>
 
             {% empty %}
             <h3>Ainda não há vídeo cadastrado.</h3>
@@ -54,7 +67,7 @@
             {% endif %}
 
              <span class="current">
-                Página {{ videos_list.number }} de {{ videos_list.paginator.num_pages }}.
+                Página {{ videos_list.number }} de {{ videos_list.paginator.num_pages }}
             </span>
 
              {% if videos_list.has_next %}
@@ -62,7 +75,7 @@
              {% endif %}
         </span>
         </div>
-
+<!--
         <div class="card blue darken-3 pesquisa">
             <div class="card-content white-text" style="padding-bottom: 0px;">
                 <span class="card-title">Busca de Vídeos</span>
@@ -94,7 +107,7 @@
             <div class="card-action">
                 <a href="#">Buscar</a>
             </div>
-        </div>
+        </div> -->
 
     </div>
 
